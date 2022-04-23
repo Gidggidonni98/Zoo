@@ -1,0 +1,31 @@
+.zoo{
+    color: rgb(77, 207, 77);
+    font-size: 35px 
+}
+
+.logico{
+    font-size: 30px;
+}
+
+.duo{
+    margin-left: 30px;
+}
+
+.menu{
+    font-size: 20px;
+}
+
+.menu2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.img{
+    max-width: 100%;
+    height: auto;
+}
+
+.pollito{
+    color: rgb(204, 106, 25);
+    font-size: 25px;
+}
