@@ -7,6 +7,15 @@ async function obtenerPaises() {
         method: 'GET',
         url: urlGetCountries
     }).done(res => {
-        console.log(res)
+        let spinner = $('#inputState');
+        let listCountries = res.data;
+
+        if(listCountries.length > 0){
+            for(let i = 0; i < listCountries.length; i++){
+                spinner.append(
+                    "<option>"+ listCountries[i].descripcion +"</option>"
+                );
+            };
+        };
     })
-}
+};
