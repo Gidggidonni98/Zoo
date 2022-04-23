@@ -120,7 +120,6 @@ const findEspecies = async() => {
                 <td>${res[i].peligroExtincion}</td>
                 <td>
                     <button class='btn btn-warning' data-toggle='modal' onclick='getEspecieDetails(${res[i].id})' data-target='#modificarEspecie'><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class='btn btn-warning' data-toggle='modal' data-target='#'><i class="fa-solid fa-pen-to-square"></i></button>
                 </td>
             </tr>
                 `;
