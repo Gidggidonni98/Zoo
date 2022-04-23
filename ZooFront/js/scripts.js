@@ -1,4 +1,3 @@
-console.log('first')
 
 const urlGetCountries = 'http://localhost:8080/api/pais/'
 
@@ -7,11 +6,11 @@ const obtenerPaises = async() => {
         method: 'GET',
         url: urlGetCountries
     }).done(res => {
-        let spinner = $('#inputState');
+        let spinner = $("#spinnerEspecies");
         let listCountries = res.data;
-
+        spinner.empty(); // Esta funcion vacia el select para evitar que se dupliquen los options
         spinner.append(
-            "<option>Selecciona...</option>"
+            "<option selected>Selecciona...</option>"
         );
 
         if(listCountries.length > 0){
