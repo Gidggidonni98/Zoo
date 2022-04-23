@@ -51,7 +51,7 @@ const findEspecies = async() => {
                 <td>${res[i].nombreComun}</td>
                 <td>${res[i].peligroExtincion}</td>
                 <td>
-                    <button class='btn btn-warning' data-toggle='modal' data-target='#actualizarEspecies'><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class='btn btn-warning' data-toggle='modal' onclick='getInfoEspecies(${res[i].id})' data-target='#actualizarEspecies'><i class="fa-solid fa-pen-to-square"></i></button>
                 </td>
             </tr>
                 `;
@@ -59,4 +59,25 @@ const findEspecies = async() => {
         $("#table2 > tbody").html(content)
     });
 };
+
+const getByIdE = async id => {
+    return await $.ajax({
+        type: 'GET',
+        url: urlEspecies + '/' + id
+    }).done(res => {
+        
+    });
+};
+
+//Obtener la información del arreglo
+
+const getInfoEspecies = async id => {
+    let especie = await getByIdE(id);
+    document.getElementById('familiaU').value = especie.data.familia;
+    document.getElementById('nombre_cientificoU').value = especie.data.nombreCientifico;
+    document.getElementById('nombre_comunU').value = especie.data.nombreComun;
+    document.getElementById('peligro_extincionU').value = especie.data.peligroExtincion;
+    
+}
+
 findEspecies();

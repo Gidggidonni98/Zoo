@@ -1,5 +1,5 @@
 const urlA = "http://localhost:8080/api/animal";
-const urlAnimal = "http://localhost:8080/api/animal";
+
 
 //-----------------------REGISTRAR ANIMALES----------------------------------//
 
@@ -28,18 +28,19 @@ const registerAnimal = () => {
     headers: { "Content-Type": "application/json" },
     url: urlA + "/",
     data: JSON.stringify(animal),
-  }).done((res) => {
-    console.log(res);
+  }).done(() => {
+    findAnimales();
     document.getElementById("claveAnimal").value = "";
   });
 };
 
+//--------------OBTENER ANIMALES---------------//
 
 const findAnimales = async() => {
   await $.ajax({
       method: 'GET',
       headers: { "Accept": "application/json" },
-      url: urlAnimal + '/'
+      url: urlA + '/'
   }).done(function(res) {
       content = "";
       res = res.data;
@@ -52,7 +53,7 @@ const findAnimales = async() => {
               <td>${res[i].genero.descripcion}</td>
               <td>${res[i].especie.nombreComun}</td>
               <td>
-                  <button class='btn btn-warning' data-toggle='modal' data-target='#actualizarAnimal'><i class="fa-solid fa-pen-to-square"></i></button>
+                  <button class='btn btn-warning' data-toggle='modal2' onclick='getInfoAnimals(${res[i].id})' data-target='#modal2'><i class="fa-solid fa-pen-to-square"></i></button>
               </td>
           </tr>
               `;
@@ -60,4 +61,59 @@ const findAnimales = async() => {
       $("#table3 > tbody").html(content)
   });
 };
+
+const getByIdF = async id => {
+    return await $.ajax({
+        type: 'GET',
+        url: urlA + '/' + id
+    }).done(res => {
+        // let claveAnimal = res[0].claveAnimal;
+        // let fechaNacimiento = res.arreglo[0].fechaNacimiento;
+
+        console.log(res);
+    });
+};
+
+//Obtener la información del arreglo
+
+const getInfoAnimals = async id => {
+    let animal = await getByIdF(id);
+    console.log(animal)
+
+}
+
+//Obtener informacion para actualizar
+
+// const getInfoUpdateArreglo = async id => {
+//     let arreglo = await getByIdF(id);
+
+//     document.getElementById('id_update').value = id
+//     document.getElementById('name_update').value = arreglo.arreglo[0].name
+//     document.getElementById('descripcion_update').value = arreglo.arreglo[0].description
+//     document.getElementById('price_update').value = arreglo.arreglo[0].price
+//     document.getElementById('quantity_update').value = arreglo.arreglo[0].quantity
+// };
+
+// //Actualizar arreglo
+
+// const updateArreglo = async() => {
+//     let id = document.getElementById('id_update').value;
+//     let name = document.getElementById('name_update').value;
+//     let description = document.getElementById('descripcion_update').value;
+//     let price = document.getElementById('price_update').value;
+//     let quantity = document.getElementById('quantity_update').value;
+
+//     $.ajax({
+//         type: 'POST',
+//         url: urlA + '/producto/update/' + id,
+//         data: { name, description, price, quantity }
+//     }).done(function(res) {
+//         findArreglo();
+//     });
+// };
+
 findAnimales();
+
+
+
+
