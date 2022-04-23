@@ -1,4 +1,3 @@
-
 const urlGetCountries = 'http://localhost:8080/api/pais/'
 
 const obtenerPaises = async() => {

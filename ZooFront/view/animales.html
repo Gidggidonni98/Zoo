@@ -154,12 +154,12 @@
           <form action="javascript:void(0);" onsubmit="registerAnimal()">
             <div class="form-group">
               <label for="exampleInputPassword1">Clave animal</label>
-              <input type="text" name="claveAnimal" id="claveAnimal" class="form-control"
-                id="exampleInputPassword1">
+              <input type="hidden" name="idAnimalUpdate" id="idAnimalUpdate" class="form-control" id="exampleInputPassword1">
+              <input type="text" name="claveAnimalUpdate" id="claveAnimalUpdate" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Fecha de nacimiento</label>
-              <input type="date" name="telefono" id="birthday" class="form-control" id="exampleInputPassword1">
+              <input type="date" name="birthdayUpdate" id="birthdayUpdate" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="form-group">
               <label for="">Especie</label>
@@ -170,9 +170,7 @@
             </div>
             <div class="form-group">
               <label for="">Genero</label>
-              <select id="" class="form-control">
-                <option selected>Selecciona...</option>
-                <option>...</option>
+              <select id="generoSpinner" class="form-control">
               </select>
             </div>
             <div class="form-group">
