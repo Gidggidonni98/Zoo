@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api/especie";
+
 const urlEspecies = "http://localhost:8080/api/especie";
 
 //-----------------------REGISTRAR ESPECIE----------------------------------//
@@ -73,6 +73,7 @@ const getByIdE = async id => {
 
 const getInfoEspecies = async id => {
     let especie = await getByIdE(id);
+    document.getElementById('idEspecieUpdate').value = especie.data.id;
     document.getElementById('familiaU').value = especie.data.familia;
     document.getElementById('nombre_cientificoU').value = especie.data.nombreCientifico;
     document.getElementById('nombre_comunU').value = especie.data.nombreComun;

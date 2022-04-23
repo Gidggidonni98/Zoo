@@ -62,37 +62,34 @@ const findAnimales = async() => {
   });
 };
 
-const getByIdF = async id => {
+const getByIdA = async id => {
     return await $.ajax({
         type: 'GET',
         url: urlA + '/' + id
     }).done(res => {
-        // let claveAnimal = res[0].claveAnimal;
-        // let fechaNacimiento = res.arreglo[0].fechaNacimiento;
 
-        console.log(res);
     });
 };
 
 //Obtener la información del arreglo
 
 const getInfoAnimals = async id => {
-    let animal = await getByIdF(id);
+    let animal = await getByIdA(id);
     console.log(animal)
 
 }
 
 //Obtener informacion para actualizar
 
-// const getInfoUpdateArreglo = async id => {
-//     let arreglo = await getByIdF(id);
+const getInfoUpdateAnimal = async id => {
+    let animal = await getByIdA(id);
 
-//     document.getElementById('id_update').value = id
-//     document.getElementById('name_update').value = arreglo.arreglo[0].name
-//     document.getElementById('descripcion_update').value = arreglo.arreglo[0].description
-//     document.getElementById('price_update').value = arreglo.arreglo[0].price
-//     document.getElementById('quantity_update').value = arreglo.arreglo[0].quantity
-// };
+    document.getElementById('idAnimalUpdate').value = animal.data.id
+    document.getElementById('name_update').value = animal.arreglo[0].name
+    document.getElementById('descripcion_update').value = animal.arreglo[0].description
+    document.getElementById('price_update').value = animal.arreglo[0].price
+    document.getElementById('quantity_update').value = animal.arreglo[0].quantity
+};
 
 // //Actualizar arreglo
 
