@@ -13,10 +13,10 @@ const getCities = async () => {
             "<option selected>Selecciona...</option>"
         );
 
-        if(cityList.length > 0){
-            for(let i = 0; i < cityList.length; i++){
+        if (cityList.length > 0) {
+            for (let i = 0; i < cityList.length; i++) {
                 citySpinner.append(
-                    "<option value='"+ cityList[i].id +"'>"+ cityList[i].descripcion +"</option>"
+                    "<option value='" + cityList[i].id + "'>" + cityList[i].descripcion + "</option>"
                 );
             };
         };
@@ -48,6 +48,40 @@ const registerZoo = () => {
         url: url + "/",
         data: JSON.stringify(zoo)
     }).done(res => {
-            console.log(res)
+        console.log(res)
     });
+};
+
+
+const getByIdF = async id => {
+    return await $.ajax({
+        type: 'GET',
+        url: urlAnimal + '/' + id
+    }).done(res => {
+        console.log(res);
+    });
+};
+
+const getZoo = async id => {
+
+    await $.ajax({
+        method: 'GET',
+        url: urlAnimal + "/"
+    }).done(res => {
+        let spinner = $("#zooSpinner");
+        let dataAni = res.data;
+        spinner.empty(); // Esta funcion vacia el select para evitar que se dupliquen los options
+        spinner.append(
+            "<option selected>Selecciona...</option>"
+        );
+
+        if(dataAni.length > 0){
+            for(let i = 0; i < dataAni.length; i++){
+                spinner.append(
+                  "<option value='"+ dataAni[i].zoologico.id +"'>"+ dataAni[i].zoologico.descripcion +"</option>"
+                  );
+            };
+        };
+
+    })
 };
