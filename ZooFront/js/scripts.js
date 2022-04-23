@@ -16,9 +16,13 @@ const obtenerPaises = async() => {
         if(listCountries.length > 0){
             for(let i = 0; i < listCountries.length; i++){
                 spinner.append(
-                    "<option>"+ listCountries[i].descripcion +"</option>"
+                    "<option value='"+ listCountries[i].id +"'>"+ listCountries[i].descripcion +"</option>"
                 );
             };
         };
     })
+};
+
+const obtenerPaisesUpdate = async() => {
+    
 };

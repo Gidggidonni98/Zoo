@@ -206,24 +206,73 @@
           <form action="javascript:void(0);" onsubmit="registerEspecie()">
             <div class="form-group">
               <label for="exampleInputPassword1">Familia</label>
-              <input type="text" name="primerApellido" id="familia" class="form-control"
+              <input type="text" name="familia" id="familia" class="form-control"
                 id="exampleInputPassword1">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Nombre Cientifico</label>
-              <input type="tel" name="telefono" id="nombre_cientifico" class="form-control" id="exampleInputPassword1">
+              <input type="tel" name="nombre_cientifico" id="nombre_cientifico" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Nombre común</label>
-              <input type="text" name="direccion" id="nombre_comun" class="form-control" id="exampleInputPassword1">
+              <input type="text" name="nombre_comun" id="nombre_comun" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Peligro de extinción</label>
-              <input type="text" name="direccion" id="peligro_extincion" class="form-control" id="exampleInputPassword1">
+              <input type="text" name="peligro_extincion" id="peligro_extincion" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="form-group">
               <label for="">País</label>
               <select id="spinnerEspecies" class="form-control">
+                
+              </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!---Modal de modificar especies-->
+  <div class="modal" tabindex="-1" id="modificarEspecie">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modificar Especie</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="javascript:void(0);" onsubmit="updadteEspecie()">
+            <div class="form-group">
+              <input type="text" name="id" id="id" class="form-control"
+                id="exampleInputPassword1">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Familia</label>
+              <input type="text" name="u_familia" id="u_familia" class="form-control"
+                id="exampleInputPassword1">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Nombre Cientifico</label>
+              <input type="tel" name="u_c_name" id="u_c_name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Nombre común</label>
+              <input type="text" name="u_com_name" id="u_com_name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Peligro de extinción</label>
+              <input type="text" name="u_direccion" id="u_direccion" class="form-control"u_direccion>
+            </div>
+            <div class="form-group">
+              <label for="">País</label>
+              <select id="u_spinnerEspecies" class="form-control">
                 
               </select>
             </div>
