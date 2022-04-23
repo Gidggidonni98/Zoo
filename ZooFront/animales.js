@@ -84,30 +84,45 @@ const getInfoAnimals = async id => {
 const getInfoUpdateAnimal = async id => {
     let animal = await getByIdA(id);
 
-    document.getElementById('idAnimalUpdate').value = animal.data.id
-    document.getElementById('name_update').value = animal.arreglo[0].name
-    document.getElementById('descripcion_update').value = animal.arreglo[0].description
-    document.getElementById('price_update').value = animal.arreglo[0].price
-    document.getElementById('quantity_update').value = animal.arreglo[0].quantity
+    document.getElementById('idAnimalUpdate').value = animal.data.id;
+    document.getElementById('calveAnimalUpdate').value = animal.data.claveAnimal;
+    document.getElementById('birthdayUpdate').value = animal.data.fechaNacimiento;
+    document.getElementById('generoUpdate').value = animal.data.generoUpdate;
+    document.getElementById('especieNombreComun').value = animal.data.quantity;
 };
 
-// //Actualizar arreglo
+// //Actualizar animal
 
-// const updateArreglo = async() => {
-//     let id = document.getElementById('id_update').value;
-//     let name = document.getElementById('name_update').value;
-//     let description = document.getElementById('descripcion_update').value;
-//     let price = document.getElementById('price_update').value;
-//     let quantity = document.getElementById('quantity_update').value;
+const updateAnimal = async() => {
+    let id =  document.getElementById('idAnimalUpdate').value;
+    let claveAnimal =  document.getElementById('calveAnimalUpdate').value ;
+    let birthday = document.getElementById('birthdatUpdate').value;
+    let genero = document.getElementById('generoUpdate').value;
+    let especie = document.getElementById('especieEUpdate').value;
 
-//     $.ajax({
-//         type: 'POST',
-//         url: urlA + '/producto/update/' + id,
-//         data: { name, description, price, quantity }
-//     }).done(function(res) {
-//         findArreglo();
-//     });
-// };
+    let animalUpdate = {
+        "claveAnimal": claveAnimal,
+        "fechaNacimiento": birthday,
+        "zoologico": {
+            "id": 5
+        },
+        "genero": {
+            "id": 1
+        },
+        "especie": {
+            "id" : 1
+        },
+      };
+    
+
+    $.ajax({
+        type: 'Put',
+        url: urlA + '/' + id,
+        data: JSON.stringify(animalUpdate)
+    }).done(function(res) {
+        findAnimales();
+    });
+};
 
 findAnimales();
 

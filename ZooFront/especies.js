@@ -11,12 +11,12 @@ const registerEspecie = () => {
   // let pais_id = document.getElementById('pais_id');
 
   let especie = {
-    nombreComun: nombre_comun,
-    nombreCientifico: nombre_cientifico,
-    familia: familia,
-    peligroExtincion: "si",
-    pais: {
-      id: 1,
+    "nombreComun": nombre_comun,
+    "nombreCientifico": nombre_cientifico,
+    "familia": familia,
+    "peligroExtincion": "si",
+    "pais": {
+      "id": 1,
     },
   };
 
@@ -65,7 +65,7 @@ const getByIdE = async id => {
         type: 'GET',
         url: urlEspecies + '/' + id
     }).done(res => {
-        
+       
     });
 };
 
@@ -73,6 +73,7 @@ const getByIdE = async id => {
 
 const getInfoEspecies = async id => {
     let especie = await getByIdE(id);
+    console.log(especie)
     document.getElementById('idEspecieUpdate').value = especie.data.id;
     document.getElementById('familiaU').value = especie.data.familia;
     document.getElementById('nombre_cientificoU').value = especie.data.nombreCientifico;
@@ -80,5 +81,44 @@ const getInfoEspecies = async id => {
     document.getElementById('peligro_extincionU').value = especie.data.peligroExtincion;
     
 }
+
+const getInfoUpdateAnimal = async id => {
+  let animal = await getByIdA(id);
+
+  document.getElementById('idEspecieU').value = animal.data.id;
+  document.getElementById('nombre_comunU').value = animal.data.nombreComun;
+  document.getElementById('nombre_cientificoU').value = animal.data.nombreCientifico;
+  document.getElementById('familiaU').value = animal.data.familia;
+  document.getElementById('paisesUpdate').value = animal.data.pais.id;
+};
+
+// //Actualizar animal
+
+const updateAnimal = async() => {
+  let id =  document.getElementById('idEspecieU').value;
+  let nombreComun =  document.getElementById('nombre_comunU').value ;
+  let nombreCientifico = document.getElementById('nombre_cientificoU').value;
+  let familia = document.getElementById('familiaU').value;
+  let pais = document.getElementById('paisUpdate').value;
+
+  let especieUpdate = {
+    "nombreComun": nombreComun,
+    "nombreCientifico": nombreCientifico,
+    "familia": familia,
+    "peligroExtincion": "si",
+    "pais": {
+      "id": 1,
+    },
+  };
+  
+
+  $.ajax({
+      type: 'PUT',
+      url: urlEspecies + '/' + id,
+      data: JSON.stringify(especieUpdate)
+  }).done(function(res) {
+      findEspecies();
+  });
+};
 
 findEspecies();
