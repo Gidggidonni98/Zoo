@@ -67,7 +67,7 @@
   </section>
   <section>
     <div class="container">
-      <h1 class="text-center mt-5  font-weight-light">Registrar Animales <a type="button" data-toggle="modal"
+      <h1 class="text-center mt-5  font-weight-light">Registrar Animales <a type="button" onclick="loadSpinners()" data-toggle="modal"
           data-target="#registrarAnimales"> <i class="fa-regular fa-square-plus" style="color: green;"></i> </a></h1>
       <div class="row">
         <table id="table3" class="table mt-3">
@@ -111,21 +111,22 @@
             </div>
             <div class="form-group">
               <label for="">Especie</label>
-              <select id="" class="form-control">
+              <select id="esp" class="form-control">
                 <option selected>Selecciona...</option>
                 <option>...</option>
               </select>
             </div>
             <div class="form-group">
               <label for="">Genero</label>
-              <select id="" class="form-control">
+              <select id="gen" class="form-control">
                 <option selected>Selecciona...</option>
-                <option>...</option>
+                <option value="1">Macho</option>
+                <option value="2">Hembra</option>
               </select>
             </div>
             <div class="form-group">
               <label for="">Zoológico</label>
-              <select id="" class="form-control">
+              <select id="zoo" class="form-control">
                 <option selected>Selecciona...</option>
                 
               </select>
@@ -151,7 +152,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="javascript:void(0);" onsubmit="registerAnimal()">
+          <form action="javascript:void(0);" onsubmit="updateAnimal()">
             <div class="form-group">
               <label for="exampleInputPassword1">Clave animal</label>
               <input type="hidden" name="idAnimalUpdate" id="idAnimalUpdate" class="form-control" id="exampleInputPassword1">
@@ -163,12 +164,14 @@
             </div>
             <div class="form-group">
               <label for="">Especie</label>
-              <select id="u_spinnerEspecies" class="form-control">
+              <select id="u_spinnerEspeciesA" class="form-control">
               </select>
             </div>
             <div class="form-group">
               <label for="">Genero</label>
               <select id="generoSpinner" class="form-control">
+                <option value="1">Macho</option>
+                <option value="2">Hembra</option>
               </select>
             </div>
             <div class="form-group">

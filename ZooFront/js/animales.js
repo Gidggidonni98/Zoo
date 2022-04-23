@@ -6,20 +6,21 @@ const urlAnimal = "http://localhost:8080/api/animal";
 const registerAnimal = () => {
   let claveAnimal = document.getElementById("claveAnimal").value;
   let birthday = document.getElementById("birthday").value;
-
-
+  let zoo = document.getElementById('zoo').value
+  let especie = document.getElementById('esp').value
+  let genero = document.getElementById('gen').value
 
   let animal = {
     "claveAnimal": claveAnimal,
     "fechaNacimiento": birthday,
     "zoologico": {
-        "id": 5
+      "id": zoo
     },
     "genero": {
-        "id": 1
+      "id": genero
     },
     "especie": {
-        "id" : 1
+      "id": especie
     },
   };
 
@@ -29,22 +30,24 @@ const registerAnimal = () => {
     url: urlA + "/",
     data: JSON.stringify(animal),
   }).done((res) => {
-    console.log(res);
-    document.getElementById("claveAnimal").value = "";
+    document.getElementById('claveAnimalUpdate').value = "";
+    document.getElementById('birthdayUpdate').value = "";
+    findAnimales()
+    
   });
 };
 
 
-const findAnimales = async() => {
+const findAnimales = async () => {
   await $.ajax({
-      method: 'GET',
-      headers: { "Accept": "application/json" },
-      url: urlAnimal + '/'
-  }).done(function(res) {
-      content = "";
-      res = res.data;
-      for (let i = 0; i < res.length; i++) {
-          content += `
+    method: 'GET',
+    headers: { "Accept": "application/json" },
+    url: urlAnimal + '/'
+  }).done(function (res) {
+    content = "";
+    res = res.data;
+    for (let i = 0; i < res.length; i++) {
+      content += `
           <tr class="text-center">
               <td>${res[i].id}</td>
               <td>${res[i].claveAnimal}</td>
@@ -56,18 +59,18 @@ const findAnimales = async() => {
               </td>
           </tr>
               `;
-      };
-      $("#table3 > tbody").html(content)
+    };
+    $("#table3 > tbody").html(content)
   });
 };
 findAnimales();
 
 const getByIdF = async id => {
   return await $.ajax({
-      type: 'GET',
-      url: urlAnimal + '/' + id
+    type: 'GET',
+    url: urlAnimal + '/' + id
   }).done(res => {
-      console.log(res);
+    console.log(res);
   });
 };
 
@@ -76,23 +79,46 @@ const getInfoUpdateAnimal = async id => {
 
   await $.ajax({
     method: 'GET',
-    url: urlAnimal + "/"
-}).done(res => {
-    let spinner = $("#generoSpinner");
-    let dataAni = res.data;
-    spinner.empty(); // Esta funcion vacia el select para evitar que se dupliquen los options
-    spinner.append(
-        "<option selected>Selecciona...</option>"
+    url: url + '/'
+  }).done(res => {
+    let spinner1 = $("#u_spinnerEspeciesA");
+    let listEspecies = res.data;
+    spinner1.empty(); // Esta funcion vacia el select para evitar que se dupliquen los options
+    spinner1.append(
+      "<option selected>Selecciona...</option>"
     );
 
-    if(dataAni.length > 0){
-        for(let i = 0; i < dataAni.length; i++){
-            spinner.append(
-              "<option value='"+ dataAni[i].genero.id +"'>"+ dataAni[i].genero.descripcion +"</option>"
-              );
-        };
+    if (listEspecies.length > 0) {
+      for (let i = 0; i < listEspecies.length; i++) {
+        spinner1.append(
+          "<option value='" + listEspecies[i].id + "'>" + listEspecies[i].familia + "</option>"
+        );
+      };
     };
-})
+  })
+
+  await $.ajax({
+    method: 'GET',
+    url: 'http://localhost:8080/api/zoo/'
+  }).done(res => {
+    let spinner3 = $("#zooSpinner");
+    let lisZoos = res.data;
+    spinner3.empty(); // Esta funcion vacia el select para evitar que se dupliquen los options
+    spinner3.append(
+      "<option selected>Selecciona...</option>"
+    );
+
+    if (lisZoos.length > 0) {
+      for (let i = 0; i < lisZoos.length; i++) {
+        spinner3.append(
+          "<option value='" + lisZoos[i].id + "'>" + lisZoos[i].nombre + "</option>"
+        );
+      };
+    };
+  })
+
+  document.getElementById('zooSpinner').value = animal.data.zoologico.id;
+  document.getElementById('u_spinnerEspeciesA').value = animal.data.especie.id;
   document.getElementById('generoSpinner').value = animal.data.genero.id;
   document.getElementById('idAnimalUpdate').value = animal.data.id;
   document.getElementById('claveAnimalUpdate').value = animal.data.claveAnimal;
@@ -103,29 +129,34 @@ const getInfoUpdateAnimal = async id => {
 
 // //Actualizar animal
 
-const updateAnimal = async() => {
-  let id =  document.getElementById('idEspecieU').value;
-  let nombreComun =  document.getElementById('nombre_comunU').value ;
-  let nombreCientifico = document.getElementById('nombre_cientificoU').value;
-  let familia = document.getElementById('familiaU').value;
-  let pais = document.getElementById('paisUpdate').value;
+const updateAnimal = async () => {
+  let id = document.getElementById('idAnimalUpdate').value;
+  let claveAnimal = document.getElementById('claveAnimalUpdate').value;
+  let fechaNacimiento = document.getElementById('birthdayUpdate').value;
+  let especie = document.getElementById('u_spinnerEspeciesA').value;
+  let genero = document.getElementById('generoSpinner').value;
+  let zoologico = document.getElementById('zooSpinner').value;
 
-  let especieUpdate = {
-    "nombreComun": nombreComun,
-    "nombreCientifico": nombreCientifico,
-    "familia": familia,
-    "peligroExtincion": "si",
-    "pais": {
-      "id": 1,
+  let animal = {
+    id: id,
+    claveAnimal: claveAnimal,
+    fechaNacimiento: fechaNacimiento,
+    especie: {
+      id: especie
     },
-  };
-  
+    genero: {
+      id: genero
+    },
+    zoologico: {
+      id: zoologico
+    }
+  }
 
   $.ajax({
-      type: 'PUT',
-      url: urlEspecies + '/' + id,
-      data: JSON.stringify(especieUpdate)
-  }).done(function(res) {
-      console.log()
+    type: 'PUT',
+    url: urlA + '/' + id,
+    data: JSON.stringify(animal)
+  }).done(function (res) {
+    console.log()
   });
 };

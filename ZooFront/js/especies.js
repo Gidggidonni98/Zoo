@@ -62,6 +62,7 @@ const getEspecieDetails = async (id) => {
           };
       };
   })
+  
 
   document.getElementById('id').value = especie.data.id
   document.getElementById('u_familia').value = especie.data.familia
