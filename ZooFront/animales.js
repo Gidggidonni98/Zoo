@@ -52,7 +52,7 @@ const findAnimales = async() => {
               <td>${res[i].genero.descripcion}</td>
               <td>${res[i].especie.nombreComun}</td>
               <td>
-                  <button class='btn btn-warning' data-toggle='modal' onclick='getInfoClient()' data-target='#detallesCliente'><i class="fa-solid fa-pen-to-square"></i></button>
+                  <button class='btn btn-warning' data-toggle='modal' data-target='#actualizarAnimal'><i class="fa-solid fa-pen-to-square"></i></button>
               </td>
           </tr>
               `;
