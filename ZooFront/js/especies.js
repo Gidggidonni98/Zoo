@@ -30,9 +30,9 @@ const registerEspecie = () => {
     document.getElementById("familia").value = "";
     document.getElementById("nombre_cientifico").value = "";
     document.getElementById("nombre_comun").value = "";
+    findEspecies();
   });
 };
-
 
 const findEspecies = async() => {
     await $.ajax({
@@ -51,7 +51,7 @@ const findEspecies = async() => {
                 <td>${res[i].nombreComun}</td>
                 <td>${res[i].peligroExtincion}</td>
                 <td>
-                    <button class='btn btn-warning' data-toggle='modal' onclick='getInfoClient()' data-target='#detallesCliente'><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class='btn btn-warning' data-toggle='modal' onclick='getAnimalDetails(${res[i].id})' data-target='#modificarAnimal'><i class="fa-solid fa-pen-to-square"></i></button>
                 </td>
             </tr>
                 `;
